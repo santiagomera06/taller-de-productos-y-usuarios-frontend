@@ -2,18 +2,35 @@ import { Link } from "react-router-dom";
 
 const ProductList = ({ products, onDelete, userRole }) => {
   return (
-    <div>
+    <div className="product-list-container">
       {products.length === 0 ? (
-        <p>No hay productos disponibles</p>
+        <div className="no-products">No hay productos disponibles</div>
       ) : (
-        <ul>
+        <ul className="product-list">
           {products.map((product) => (
-            <li key={product.id}>
-              {product.name} - {product.category} - ${product.price}
-              <Link to={`/products/edit/${product.id}`}>Editar</Link>
-              {userRole === 'admin' && (
-                <button onClick={() => onDelete(product.id)}>Eliminar</button>
-              )}
+            <li key={product.id} className="product-item">
+              <div className="product-info">
+                <h3>{product.name}</h3>
+                <p>{product.category} - ${product.price}</p>
+              </div>
+              
+              <div className="product-actions">
+                <Link 
+                  to={`/products/edit/${product.id}`} 
+                  className="btn btn-outline"
+                >
+                  Editar
+                </Link>
+                
+                {userRole === 'admin' && (
+                  <button 
+                    className="btn btn-danger"
+                    onClick={() => onDelete(product.id)}
+                  >
+                    Eliminar
+                  </button>
+                )}
+              </div>
             </li>
           ))}
         </ul>

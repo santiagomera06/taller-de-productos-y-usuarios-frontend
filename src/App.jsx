@@ -1,3 +1,4 @@
+import './styles.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
@@ -12,17 +13,19 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          
-          <Route element={<PrivateRoute />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/products/add" element={<AddProduct />} />
-            <Route path="/products/edit/:id" element={<EditProduct />} />
-          </Route>
-        </Routes>
+        <div className="app-container">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            
+            <Route element={<PrivateRoute />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/products/add" element={<AddProduct />} />
+              <Route path="/products/edit/:id" element={<EditProduct />} />
+            </Route>
+          </Routes>
+        </div>
       </Router>
     </AuthProvider>
   );

@@ -22,27 +22,44 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Iniciar Sesión</h2>
-      {error && <p>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
-      <p>
-        <a href="/register">Regístrate</a>
-      </p>
+    <div className="auth-container">
+      <div className="auth-card">
+        <h2>Iniciar Sesión</h2>
+        {error && <div className="alert alert-danger">{error}</div>}
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Ingrese su email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          
+          <div className="form-group">
+            <label>Contraseña</label>
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Ingrese su contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          
+          <button className="btn btn-block" type="submit">
+            Iniciar Sesión
+          </button>
+        </form>
+        
+        <div className="auth-footer">
+          ¿No tienes una cuenta? <a href="/register">Regístrate</a>
+        </div>
+      </div>
     </div>
   );
 };
